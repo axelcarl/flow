@@ -1,7 +1,15 @@
 import "./App.css";
+import { useTaskStore } from "./stores/task";
 
 function App() {
-  return <div className="p-2 font-bold">Nothing to see here</div>;
+  const tasks = useTaskStore((state) => state.tasks);
+  return (
+    <div className="p-2 font-bold">
+      {tasks.map((task) => {
+        return <div>{task.text}</div>;
+      })}
+    </div>
+  );
 }
 
 export default App;
