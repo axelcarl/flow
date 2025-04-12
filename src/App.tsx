@@ -1,12 +1,13 @@
 import "./App.css";
+import { TaskCard } from "./components/task";
 import { useTaskStore } from "./stores/task";
 
 function App() {
   const tasks = useTaskStore((state) => state.tasks);
   return (
-    <div className="p-2 font-bold">
+    <div className="p-10">
       {tasks.map((task) => {
-        return <div>{task.text}</div>;
+        return <TaskCard key={task.inception.toString()} task={task} />;
       })}
     </div>
   );
