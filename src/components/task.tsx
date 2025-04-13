@@ -19,7 +19,7 @@ export const TaskCard = ({ task }: { task: Task }) => {
   );
 
   return (
-    <Card className="w-[400px]">
+    <Card className="min-w-[300px]">
       <CardHeader>
         <CardTitle className="flex justify-between">
           {task.text}
@@ -34,8 +34,8 @@ export const TaskCard = ({ task }: { task: Task }) => {
         </div>
       </CardContent>
       <CardFooter>
-        <div className="text-sm text-gray-500">
-          Created at: {task.inception.toLocaleString()}
+        <div className=" flex text-sm text-gray-500 justify-end w-full">
+          {task.inception.toLocaleDateString()}
         </div>
       </CardFooter>
     </Card>
@@ -45,10 +45,10 @@ export const TaskCard = ({ task }: { task: Task }) => {
 const statusIcon = (status: string) => {
   switch (status) {
     case "open":
-      return <Circle />;
+      return <Circle className="text-blue-500" />;
     case "pending":
-      return <CirclePlay />;
+      return <CirclePlay className="text-yellow-500" />;
     case "done":
-      return <CheckCircle2 />;
+      return <CheckCircle2 className="text-green-500" />;
   }
 };

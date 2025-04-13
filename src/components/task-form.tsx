@@ -49,7 +49,7 @@ export function TaskForm() {
   }
 
   return (
-    <Card>
+    <Card className="flex-1 min-w-[350px]">
       <CardHeader className="font-bold">Create New Task</CardHeader>
       <CardContent>
         <Form {...form}>
