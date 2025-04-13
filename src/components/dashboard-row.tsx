@@ -1,6 +1,13 @@
 import { DashboardRowProps } from "@/types/dashboard";
 import { TaskCard } from "./task";
 import { Task } from "@/types/task";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 
 export const DashboardRow = ({ tasks, status }: DashboardRowProps) => {
   const row = tasks.filter((task) => task.status === status).slice(0, 10);
@@ -12,13 +19,21 @@ export const DashboardRow = ({ tasks, status }: DashboardRowProps) => {
   return (
     <div className="flex flex-col gap-5">
       <span className="font-bold">{getStatusTitle(status)}</span>
-      <div className="flex gap-5 overflow-x-auto scroll-smooth">
-        {row
-          .filter((task) => task.status === status)
-          .slice(0, 10)
-          .map((task) => (
-            <TaskCard key={task.inception.toString()} task={task} />
-          ))}
+      <div>
+        <Carousel>
+          <CarouselContent>
+            {row
+              .filter((task) => task.status === status)
+              .slice(0, 10)
+              .map((task) => (
+                <CarouselItem className="md:basis-1/2">
+                  <TaskCard key={task.inception.toString()} task={task} />
+                </CarouselItem>
+              ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </div>
   );

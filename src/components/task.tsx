@@ -19,7 +19,7 @@ export const TaskCard = ({ task }: { task: Task }) => {
   );
 
   return (
-    <Card className="min-w-[300px]">
+    <Card className="min-w-[275px]">
       <CardHeader>
         <CardTitle className="flex justify-between">
           {task.text}
