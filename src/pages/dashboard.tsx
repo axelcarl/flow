@@ -4,7 +4,10 @@ import { TaskForm } from "@/components/task-form";
 import { useTaskStore } from "@/stores/task";
 
 function Dashboard() {
-  const tasks = useTaskStore((state) => state.tasks);
+  const tasks = useTaskStore((state) => state.tasks)
+    .sort((t) => -t.inception.getTime())
+    .slice(0, 3);
+
   return (
     <div className="flex flex-col p-14 gap-10">
       <div className="flex gap-5 flex-wrap">
@@ -12,8 +15,8 @@ function Dashboard() {
         <div className="flex flex-col gap-5 max-w-full flex-1">
           <span className="font-bold">Recent tasks:</span>
           <div className="flex gap-5 flex-col flex-1">
-            {tasks.slice(0, 3).map((task) => {
-              return <TaskCard key={task.inception.toString()} task={task} />;
+            {tasks.map((task) => {
+              return <TaskCard key={task.id} task={task} />;
             })}
           </div>
         </div>

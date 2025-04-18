@@ -22,14 +22,11 @@ export const DashboardRow = ({ tasks, status }: DashboardRowProps) => {
       <div>
         <Carousel>
           <CarouselContent>
-            {row
-              .filter((task) => task.status === status)
-              .slice(0, 10)
-              .map((task) => (
-                <CarouselItem className="md:basis-1/2">
-                  <TaskCard key={task.inception.toString()} task={task} />
-                </CarouselItem>
-              ))}
+            {row.map((task) => (
+              <CarouselItem key={task.id} className="md:basis-1/2">
+                <TaskCard task={task} />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />

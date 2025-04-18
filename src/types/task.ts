@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const TaskSchema = z.object({
+  id: z.number(),
   text: z.string().min(3, "Task description is required."),
   status: z.enum(["open", "pending", "done"]),
   inception: z.date(),

@@ -37,6 +37,7 @@ export function TaskForm() {
   const form = useForm<Task>({
     resolver: zodResolver(TaskSchema),
     defaultValues: {
+      id: new Date().getTime(),
       text: "",
       status: "open",
       inception: new Date(),
