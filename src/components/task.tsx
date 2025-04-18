@@ -23,8 +23,12 @@ export const TaskCard = ({ task }: { task: Task }) => {
       <CardHeader>
         <CardTitle className="flex justify-between">
           {task.text}
-          <div className="cursor-pointer" onClick={() => alterStatus(task)}>
+          <div
+            className="hover:bg-zinc-100 border-zinc-200 border-1 cursor-pointer flex gap-2 font-medium p-1 rounded-full bg-zinc-50 justify-around items-center text-sm"
+            onClick={() => alterStatus(task)}
+          >
             {statusIcon(task.status)}
+            {task.status}
           </div>
         </CardTitle>
       </CardHeader>
@@ -45,10 +49,10 @@ export const TaskCard = ({ task }: { task: Task }) => {
 const statusIcon = (status: string) => {
   switch (status) {
     case "open":
-      return <Circle className="text-blue-500" />;
+      return <Circle className="size-4 text-blue-500" />;
     case "pending":
-      return <CirclePlay className="text-yellow-500" />;
+      return <CirclePlay className="size-4 text-yellow-500" />;
     case "done":
-      return <CheckCircle2 className="text-green-500" />;
+      return <CheckCircle2 className="size-4 text-green-500" />;
   }
 };
