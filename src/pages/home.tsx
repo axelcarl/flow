@@ -19,10 +19,10 @@ export const Home = () => {
             <span className=""> a task manager</span>
           </div>
 
-          <div className="p-8 text-2xl sm:text-7xl font-thin flex flex-col text-center flex-wrap">
+          <div className="p-8 text-2xl sm:text-7xl font-thin flex flex-col text-center flex-wrap text-slate-800">
             <span>Task managing reimagined,</span>
             <span>Simplicity kept</span>
-            <div className="text-lg sm:text-2xl font-thin max-w-[60vh] mt-2">
+            <div className="text-lg sm:text-2xl font-thin max-w-[60vh] mt-2 text-slate-600">
               Instant action, made for productivity, multiview support, logical
               workflows, creative planning, steamlined pipelines
             </div>

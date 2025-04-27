@@ -26,33 +26,57 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { CalendarIcon } from "lucide-react";
+import { ChevronDown, CalendarIcon, ChevronUp } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { useTaskStore } from "@/stores/task";
+import { useState } from "react";
 
-export function TaskForm() {
+const today = new Date();
+const tomorrow = new Date();
+tomorrow.setDate(today.getDate() + 1);
+
+export function TaskForm({ expandable }: { expandable: boolean }) {
+  const [expanded, setExpanded] = useState(!expandable);
   const createTask = useTaskStore((state) => state.createTask);
   const form = useForm<Task>({
     resolver: zodResolver(TaskSchema),
     defaultValues: {
-      id: new Date().getTime(),
+      id: 1,
       text: "",
       status: "open",
-      inception: new Date(),
-      deadline: new Date(),
+      inception: today,
+      deadline: tomorrow,
     },
   });
 
   function onSubmit(values: Task) {
+    values.inception = new Date();
+    values.id = values.inception.getTime();
     createTask(values);
   }
 
   return (
-    <Card className="flex-1">
-      <CardHeader className="font-bold">Create New Task</CardHeader>
-      <CardContent>
+    <Card
+      className={cn(expanded ? "flex-1" : "flex-0 gap-0 py-6 justify-center")}
+    >
+      <CardHeader className="font-bold">
+        <div className="flex justify-between items-center">
+          Create New Task{" "}
+          {expandable ? (
+            <Button variant={"ghost"} onClick={() => setExpanded(!expanded)}>
+              {expanded ? <ChevronUp /> : <ChevronDown />}
+            </Button>
+          ) : null}
+        </div>
+      </CardHeader>
+      <CardContent
+        className={cn(
+          "transition-[max-height] duration-200",
+          expanded ? "max-h-[1000px]" : "max-h-0 overflow-hidden",
+        )}
+      >
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField

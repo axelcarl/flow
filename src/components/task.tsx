@@ -13,9 +13,9 @@ export const TaskCard = ({ task }: { task: Task }) => {
   const alterStatus = useTaskStore((state) => state.alterStatus);
   const deadline = Math.round(
     new Date(task.deadline.getTime() - new Date().getTime()).getTime() /
-      1000 /
-      3600 /
-      24,
+    1000 /
+    3600 /
+    24,
   );
 
   return (
@@ -24,7 +24,7 @@ export const TaskCard = ({ task }: { task: Task }) => {
         <CardTitle className="flex justify-between">
           {task.text}
           <div
-            className="hover:bg-zinc-100 border-zinc-200 border-1 cursor-pointer flex gap-2 font-medium p-1 rounded-full bg-zinc-50 justify-around items-center text-sm"
+            className="hover:bg-slate-100 border-slate-200 border-1 cursor-pointer flex gap-2 font-medium py-1 px-2 rounded-full bg-zinc-50 justify-around items-center text-sm"
             onClick={() => alterStatus(task)}
           >
             {statusIcon(task.status)}
@@ -38,7 +38,7 @@ export const TaskCard = ({ task }: { task: Task }) => {
         </div>
       </CardContent>
       <CardFooter>
-        <div className=" flex text-sm text-gray-500 justify-end w-full">
+        <div className=" flex text-sm text-slate-500 justify-end w-full">
           {task.inception.toLocaleDateString()}
         </div>
       </CardFooter>
