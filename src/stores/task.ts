@@ -46,8 +46,12 @@ const mock = [
   },
 ];
 
-export const useTaskStore = create<TaskState>((set) => ({
-  tasks: [...mock],
+export const useTaskStore = create<TaskState>((set, get) => ({
+  tasks: [],
+  addMockTasks: () => set((state) => ({ tasks: [...state.tasks, ...mock] })),
+  logTasks: () => {
+    console.log(get().tasks);
+  },
   createTask: (task: Task) =>
     set((state) => ({ tasks: [...state.tasks, task] })),
   alterStatus: (task: Task) =>

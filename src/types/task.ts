@@ -14,6 +14,8 @@ export type Task = z.infer<typeof TaskSchema>;
 
 export interface TaskState {
   tasks: Task[];
+  addMockTasks: () => void;
+  logTasks: () => void;
   createTask: (task: Task) => void;
   alterStatus: (task: Task) => void;
 }
